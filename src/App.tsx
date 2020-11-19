@@ -1,10 +1,11 @@
 import React from "react";
 import "./App.css";
+import Categories from "./components/Categories";
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <p>Hello world</p>
+      <Categories />
     </div>
   );
 };

@@ -4,7 +4,7 @@ import Categories from "./components/Categories";
 
 const App: React.FC = () => {
   return (
-    <div className="App">
+    <div className="App background">
       <Categories />
     </div>
   );

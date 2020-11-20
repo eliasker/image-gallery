@@ -1,23 +1,22 @@
 import React, { useState } from "react";
+
 import { Picture } from "../types";
+import Thumbnail from "./Thumbnail";
 
 type GalleryProps = {
+  title: string;
   pictures: Picture[];
 };
 
-type GalleryItemProps = {
-  picture: Picture;
-  pictureIndex: number;
-};
-
 /**
- * Category is a component that maps thumbnails of pictures
+ * Gallery is a component that maps thumbnails of pictures
  * Clicking thumbnail shows the full image
+ * TODO: title
  * TODO: add lightbox
  * TODO: show description
- * TODO: export GalleryItem
+ * TODO: back button to category page
  */
-const Gallery: React.FC<GalleryProps> = ({ pictures }: GalleryProps) => {
+const Gallery: React.FC<GalleryProps> = ({ title, pictures }: GalleryProps) => {
   const [index, setIndex] = useState<number | null>(null);
 
   const openLightBox = (index: number) => {
@@ -28,26 +27,16 @@ const Gallery: React.FC<GalleryProps> = ({ pictures }: GalleryProps) => {
     setIndex(null);
   };
 
-  const GalleryItem: React.FC<{ picture: Picture; pictureIndex: number }> = ({
-    picture,
-    pictureIndex,
-  }: GalleryItemProps) => {
-    return (
-      <div className="thumbnail-container">
-        <img
-          src={picture.thumbnail_src}
-          alt={picture.alt}
-          onClick={() => openLightBox(pictureIndex)}
-        />
-      </div>
-    );
-  };
-
   return (
     <div className="center-container">
       <div className="gallery-container white-background">
         {pictures.map((p: Picture, index: number) => (
-          <GalleryItem picture={p} pictureIndex={index} key={p.id} />
+          <Thumbnail
+            openLightBox={openLightBox}
+            picture={p}
+            pictureIndex={index}
+            key={p.id}
+          />
         ))}
 
         {index === null ? null : (

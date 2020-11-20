@@ -8,4 +8,10 @@ export const testImage = {
   thumbnail_src: bear_thumb,
 };
 
-export const testPictures = [testImage, testImage];
+export const testArray = [testImage, testImage];
+
+export const testCategory = {
+  id: "1",
+  title: "Bears",
+  pictures: [testImage, testImage],
+};

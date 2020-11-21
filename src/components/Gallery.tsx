@@ -33,15 +33,15 @@ const Gallery: React.FC<GalleryProps> = ({ title, pictures }: GalleryProps) => {
         {pictures.map((p: Picture, index: number) => (
           <Thumbnail
             openLightBox={openLightBox}
-            picture={p}
             pictureIndex={index}
+            picture={p}
             key={p.id}
           />
         ))}
 
         {index === null ? null : (
           <img
-            src={pictures[index].src}
+            src={pictures[index].url}
             alt={pictures[index].alt}
             onClick={() => closeLightBox()}
           />

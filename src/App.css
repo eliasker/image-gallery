@@ -21,13 +21,14 @@
   margin: 10%;
 }
 .thumbnail {
+  max-width: 300px;
+  height: auto;
   border: 3px solid darkgreen;
 }
 /*Highlights that clickability of thumbnail*/
 .thumbnail:hover {
   opacity: 0.9;
 }
-
 
 /*Highlights that element is clickable*/
 .clickable:hover {

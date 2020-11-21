@@ -16,7 +16,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
     <div className="thumbnail-container">
       <img
         className="thumbnail clickable"
-        src={picture.thumbnail_src}
+        src={picture.thumbnail_url ? picture.thumbnail_url : picture.url}
         alt={picture.alt}
         onClick={() => openLightBox(pictureIndex)}
       />

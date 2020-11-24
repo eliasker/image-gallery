@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 
 import { Picture } from "../types";
 import Thumbnail from "./Thumbnail";
@@ -6,17 +6,21 @@ import Thumbnail from "./Thumbnail";
 type GalleryProps = {
   title: string;
   pictures: Picture[];
+  setCategory: Dispatch<SetStateAction<string>>;
 };
 
 /**
  * Gallery is a component that maps thumbnails of pictures
  * Clicking thumbnail shows the full image
- * TODO: title
  * TODO: add lightbox
  * TODO: show description
- * TODO: back button to category page
+ * TODO: back button style...
  */
-const Gallery: React.FC<GalleryProps> = ({ title, pictures }: GalleryProps) => {
+const Gallery: React.FC<GalleryProps> = ({
+  title,
+  pictures,
+  setCategory,
+}: GalleryProps) => {
   const [index, setIndex] = useState<number | null>(null);
 
   const openLightBox = (index: number) => {
@@ -30,6 +34,9 @@ const Gallery: React.FC<GalleryProps> = ({ title, pictures }: GalleryProps) => {
   return (
     <div className="center-container">
       <div className="gallery-container white-background">
+        <h3>{title}</h3>
+        <button onClick={() => setCategory("")}>Back</button>
+
         {pictures.map((p: Picture, index: number) => (
           <Thumbnail
             openLightBox={openLightBox}
@@ -44,6 +51,7 @@ const Gallery: React.FC<GalleryProps> = ({ title, pictures }: GalleryProps) => {
             src={pictures[index].url}
             alt={pictures[index].alt}
             onClick={() => closeLightBox()}
+            className="temp-full-image"
           />
         )}
       </div>

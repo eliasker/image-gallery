@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import "./styles/App.css";
 import Categories from "./components/Categories";
 
 const App: React.FC = () => {

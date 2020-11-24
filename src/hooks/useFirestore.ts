@@ -10,7 +10,7 @@ import { Picture, Category } from "../types";
  * @param {*} collection Name of the collection in firebase
  */
 const useFirestore = (collectionName: string): Category => {
-  const [images, setimages] = useState<Picture[]>([]);
+  const [images, setImages] = useState<Picture[]>([]);
   useEffect(() => {
     const unsub = projectFirestore
       .collection(collectionName)
@@ -21,7 +21,7 @@ const useFirestore = (collectionName: string): Category => {
         snapshot.forEach((doc) => {
           documents.push({ ...doc.data(), id: doc.id });
         });
-        setimages(documents);
+        setImages(documents);
       });
     // Clean-up function that unsubscribes from the collection
     return () => unsub();

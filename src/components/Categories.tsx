@@ -2,17 +2,17 @@ import React, { useState } from "react";
 
 import Gallery from "./Gallery";
 import useFirestore from "../hooks/useFirestore";
+import { capitalize } from "../util/stringUtils"
 
 /**
  * Component that displays either one thumbnail from each category or
  * Gallery component with images that have right category
  * Thumbnails have an onClick setState(category)
  * TODO: Kinda messy component...
- * TODO: Selecting a category to view its pictures in a gallery
  */
 const Categories: React.FC = () => {
   const { images } = useFirestore("pictures");
-  const [category, setCategory] = useState("");
+  const [categoryName, setCategoryName] = useState("");
 
   /**
    * Function that returns an filtered image array
@@ -37,9 +37,9 @@ const Categories: React.FC = () => {
             className="thumbnail clickable"
             src={filteredImg.url}
             alt={filteredImg.alt}
-            onClick={() => setCategory(filteredImg.category)}
+            onClick={() => setCategoryName(filteredImg.category)}
           />
-          <p>{filteredImg.category}</p>
+          <p>{capitalize(filteredImg.category)}</p>
         </div>
       ));
   };
@@ -47,11 +47,11 @@ const Categories: React.FC = () => {
   return (
     <div className="center-container">
       <div className="gallery-container white-background">
-        {category ? (
+        {categoryName ? (
           <Gallery
-            title={category}
-            pictures={images.filter((img) => img.category === category)}
-            setCategory={setCategory}
+            category={{ name: categoryName, 
+              images: images.filter((img) => img.category === categoryName) }}
+            setCategory={setCategoryName}
           />
         ) : images[0] ? (
           mapCategories()

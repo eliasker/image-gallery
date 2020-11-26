@@ -7,8 +7,11 @@ export interface Picture {
   thumbnail_url?: string;
 }
 
-// TODO: Category should have a name (and an id?)
 export interface Category {
-  name?: string;
+  name: string;
+  images: Picture[];
+}
+
+export type Collection = {
   images: Picture[];
 }

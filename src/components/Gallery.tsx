@@ -1,11 +1,12 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 
-import { Picture } from "../types";
+import { Picture, Category } from "../types";
 import Thumbnail from "./Thumbnail";
+import { capitalize } from "../util/stringUtils"
+
 
 type GalleryProps = {
-  title: string;
-  pictures: Picture[];
+  category: Category;
   setCategory: Dispatch<SetStateAction<string>>;
 };
 
@@ -17,8 +18,7 @@ type GalleryProps = {
  * TODO: back button style...
  */
 const Gallery: React.FC<GalleryProps> = ({
-  title,
-  pictures,
+  category,
   setCategory,
 }: GalleryProps) => {
   const [index, setIndex] = useState<number | null>(null);
@@ -34,10 +34,10 @@ const Gallery: React.FC<GalleryProps> = ({
   return (
     <div className="center-container">
       <div className="gallery-container white-background">
-        <h3>{title}</h3>
+        <h3>{capitalize(category.name)}</h3>
         <button onClick={() => setCategory("")}>Back</button>
 
-        {pictures.map((p: Picture, index: number) => (
+        {category.images.map((p: Picture, index: number) => (
           <Thumbnail
             openLightBox={openLightBox}
             pictureIndex={index}
@@ -48,8 +48,8 @@ const Gallery: React.FC<GalleryProps> = ({
 
         {index === null ? null : (
           <img
-            src={pictures[index].url}
-            alt={pictures[index].alt}
+            src={category.images[index].url}
+            alt={category.images[index].alt}
             onClick={() => closeLightBox()}
             className="temp-full-image"
           />

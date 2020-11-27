@@ -1,4 +1,5 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
+import { Modal } from "@material-ui/core";
 
 import { Picture, Category } from "../types";
 import Thumbnail from "./Thumbnail";
@@ -12,8 +13,9 @@ type GalleryProps = {
 
 /**
  * Gallery is a component that maps thumbnails of pictures
- * Clicking thumbnail shows the full image
- * TODO: add lightbox
+ * Clicking thumbnail shows the image in lightbox
+ * TODO: lightbox style
+ * TODO: move Modal/lightbox
  * TODO: show description
  * TODO: back button style...
  */
@@ -21,14 +23,21 @@ const Gallery: React.FC<GalleryProps> = ({
   category,
   setCategory,
 }: GalleryProps) => {
-  const [index, setIndex] = useState<number | null>(null);
+  const [index, setIndex] = useState<number>(0);
+  const [open, setOpen] = useState(false);
 
   const openLightBox = (index: number) => {
+    setOpen(true);
     setIndex(index);
+    return (
+      <div>
+
+      </div>
+    )
   };
 
   const closeLightBox = () => {
-    setIndex(null);
+    setIndex(0);
   };
 
   return (
@@ -45,17 +54,29 @@ const Gallery: React.FC<GalleryProps> = ({
             key={p.id}
           />
         ))}
+        <Modal
+          open={open}
+          onClose={() => setOpen(false)}
+        >
+          <div style={{}} className="center-container modal-style">
+            <img
+            className="modal-image"
+              src={category.images[index].url}
+              alt={category.images[index].alt}
+            />
+          </div>
+        </Modal>
 
-        {index === null ? null : (
+        {/*
+        index === null ? null : (
           <img
             src={category.images[index].url}
             alt={category.images[index].alt}
             onClick={() => closeLightBox()}
-            className="temp-full-image"
           />
-        )}
+        )*/}
       </div>
-    </div>
+    </div >
   );
 };
 

@@ -1,4 +1,5 @@
 /*Elements inside container are centered*/
+
 .center-container {
   display: flex;
   justify-content: center;
@@ -7,6 +8,7 @@
 }
 
 /**/
+
 .gallery-container {
   border: 3px solid darkgreen;
   min-height: 80vh;
@@ -20,17 +22,31 @@
 .thumbnail-container {
   margin: 10%;
 }
+
 .thumbnail {
   max-width: 300px;
   height: auto;
   border: 3px solid darkgreen;
 }
+
 /*Highlights that clickability of thumbnail*/
+
 .thumbnail:hover {
   opacity: 0.9;
 }
 
+.modal-style {
+  max-width: 80%;
+  height: auto;
+}
+
+.modal-image {
+  max-width: 100%;
+  height: auto;
+}
+
 /*Highlights that element is clickable*/
+
 .clickable:hover {
   cursor: pointer;
 }

@@ -13,7 +13,6 @@ type GalleryProps = {
 /**
  * Gallery is a component that maps thumbnails of pictures
  * Clicking thumbnail shows the image in lightbox
- * TODO: lightbox style
  * TODO: move Modal/lightbox
  * TODO: show description
  * TODO: back button style...

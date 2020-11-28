@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 
 import Gallery from "./Gallery";
-import useFirestore from "../hooks/useFirestore";
-import { capitalize } from "../util/stringUtils"
+import { Collection } from "../types";
+import { capitalize } from "../util/stringUtils";
 
 /**
  * Component that displays either one thumbnail from each category or
- * Gallery component with images that have right category
+ * Gallery component with images that have matching category
  * Thumbnails have an onClick setState(category)
  * TODO: Kinda messy component...
  */
-const Categories: React.FC = () => {
-  const { images } = useFirestore("pictures");
+const Categories: React.FC<Collection> = ({ images }: Collection) => {
   const [categoryName, setCategoryName] = useState("");
 
   /**
@@ -49,8 +48,10 @@ const Categories: React.FC = () => {
       <div className="gallery-container white-background">
         {categoryName ? (
           <Gallery
-            category={{ name: categoryName, 
-              images: images.filter((img) => img.category === categoryName) }}
+            category={{
+              name: categoryName,
+              images: images.filter((img) => img.category === categoryName),
+            }}
             setCategory={setCategoryName}
           />
         ) : images[0] ? (

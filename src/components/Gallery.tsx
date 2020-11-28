@@ -3,8 +3,7 @@ import { Modal } from "@material-ui/core";
 
 import { Picture, Category } from "../types";
 import Thumbnail from "./Thumbnail";
-import { capitalize } from "../util/stringUtils"
-
+import { capitalize } from "../util/stringUtils";
 
 type GalleryProps = {
   category: Category;
@@ -29,15 +28,6 @@ const Gallery: React.FC<GalleryProps> = ({
   const openLightBox = (index: number) => {
     setOpen(true);
     setIndex(index);
-    return (
-      <div>
-
-      </div>
-    )
-  };
-
-  const closeLightBox = () => {
-    setIndex(0);
   };
 
   return (
@@ -54,29 +44,18 @@ const Gallery: React.FC<GalleryProps> = ({
             key={p.id}
           />
         ))}
-        <Modal
-          open={open}
-          onClose={() => setOpen(false)}
-        >
-          <div style={{}} className="center-container modal-style">
+
+        <Modal open={open} onClose={() => setOpen(false)}>
+          <div className="lightbox-image-container">
             <img
-            className="modal-image"
+              className="lightbox-image"
               src={category.images[index].url}
               alt={category.images[index].alt}
             />
           </div>
         </Modal>
-
-        {/*
-        index === null ? null : (
-          <img
-            src={category.images[index].url}
-            alt={category.images[index].alt}
-            onClick={() => closeLightBox()}
-          />
-        )*/}
       </div>
-    </div >
+    </div>
   );
 };
 

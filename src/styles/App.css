@@ -1,13 +1,10 @@
 /*Elements inside container are centered*/
-
 .center-container {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
-
-/**/
 
 .gallery-container {
   border: 3px solid darkgreen;
@@ -20,7 +17,7 @@
 }
 
 .thumbnail-container {
-  margin: 10%;
+  margin: 10% 10% 0% 10%;
 }
 
 .thumbnail {
@@ -30,23 +27,25 @@
 }
 
 /*Highlights that clickability of thumbnail*/
-
 .thumbnail:hover {
   opacity: 0.9;
 }
 
-.modal-style {
-  max-width: 80%;
+/**/
+.lightbox-image-container {
   height: auto;
+  position: absolute;
+  left:50%;
+  top:50%;
+  transform: translate(-50%, -50%);
 }
 
-.modal-image {
-  max-width: 100%;
+.lightbox-image {
+  max-width: 80vw;
   height: auto;
 }
 
 /*Highlights that element is clickable*/
-
 .clickable:hover {
   cursor: pointer;
 }

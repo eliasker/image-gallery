@@ -21,7 +21,7 @@ const Gallery: React.FC<GalleryProps> = ({
   category,
   setCategory,
 }: GalleryProps) => {
-  const [index, setIndex] = useState<number>(0);
+  const [index, setIndex] = useState(0);
   const [open, setOpen] = useState(false);
 
   const openLightBox = (index: number) => {
